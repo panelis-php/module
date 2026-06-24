@@ -1,6 +1,6 @@
 <?php
 
-namespace Panelis\Module\Panel\Resources\Resources\ModuleResource\Enums;
+namespace Panelis\Module\Panel\Resources\ModuleResource\Enums;
 
 enum ModulePermission: string
 {
