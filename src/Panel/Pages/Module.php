@@ -7,8 +7,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
-use Panelis\Module\Panel\Resources\Resources\ModuleResource\Enums\ModulePermission;
-use Panelis\Package;
+use Panelis\Module\Panel\Resources\ModuleResource\Enums\ModulePermission;
 
 class Module extends Page implements HasTable
 {
@@ -41,7 +40,7 @@ class Module extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->records(fn (): array => Package::getPanelisModules())
+            ->records(fn (): array => get_modules())
             ->columns([
                 TextColumn::make('name')
                     ->label(__('module::module.name')),
