@@ -2,7 +2,9 @@
 
 namespace Panelis\Module\Panel\Pages;
 
+use Filament\Actions\Action;
 use Filament\Pages\Page;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -41,15 +43,27 @@ class Module extends Page implements HasTable
     {
         return $table
             ->records(fn (): array => get_modules())
+            ->stackedOnMobile()
             ->columns([
+                TextColumn::makeSinceDate('time', __('module::module.updated_at')),
+
                 TextColumn::make('name')
                     ->label(__('module::module.name')),
 
                 TextColumn::make('description')
-                    ->label(__('module::module.description')),
+                    ->label(__('module::module.description'))
+                    ->wrap(),
 
                 TextColumn::make('version')
                     ->label(__('module::module.version')),
+            ])
+            ->recordActions([
+                Action::make('support')
+                    ->label(__('module::module.btn.support'))
+                    ->icon(Heroicon::BugAnt)
+                    ->hidden(fn (array $record): bool => empty($record['support']))
+                    ->url(fn (array $record): ?string => data_get($record, 'support.issues'))
+                    ->openUrlInNewTab(),
             ]);
     }
 }
