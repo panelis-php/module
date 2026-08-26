@@ -12,6 +12,7 @@ return [
     'time' => 'Time',
     'keywords' => 'Keywords',
     'author' => 'Author',
+    'email' => 'Email',
     'dependency' => 'Dependency',
     'package' => 'Package',
 
