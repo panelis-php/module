@@ -75,7 +75,7 @@ class ViewModule extends Page
                         KeyValueEntry::make('authors')
                             ->label(__('module::module.author'))
                             ->keyLabel(__('module::module.name'))
-                            ->valueLabel('Email')
+                            ->valueLabel(__('module::module.email'))
                             ->state(collect($this->moduleData['authors'] ?? [])->mapWithKeys(fn (array $author): array => [
                                 $author['name'] => $author['email'] ?? '-',
                             ])->all()),
