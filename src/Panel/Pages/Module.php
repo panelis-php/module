@@ -48,7 +48,10 @@ class Module extends Page implements HasTable
                 TextColumn::makeSinceDate('time', __('module::module.updated_at')),
 
                 TextColumn::make('name')
-                    ->label(__('module::module.name')),
+                    ->label(__('module::module.name'))
+                    ->url(fn (array $record): string => ViewModule::getUrl([
+                        'module' => $record['name'],
+                    ])),
 
                 TextColumn::make('description')
                     ->label(__('module::module.description'))
@@ -64,6 +67,11 @@ class Module extends Page implements HasTable
                     ->hidden(fn (array $record): bool => empty($record['support']))
                     ->url(fn (array $record): ?string => data_get($record, 'support.issues'))
                     ->openUrlInNewTab(),
+
+                Action::make('view')
+                    ->label(__('module::module.btn.view'))
+                    ->icon(Heroicon::Eye)
+                    ->url(fn (array $record): string => ViewModule::getUrl(['module' => $record['name']])),
             ]);
     }
 }
