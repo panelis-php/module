@@ -2,7 +2,10 @@
 
 namespace Panelis\Module\Panel\Resources\ModuleResource\Enums;
 
-enum ModulePermission: string
+use Filament\Support\Contracts\HasLabel;
+use Illuminate\Support\Str;
+
+enum ModulePermission: string implements HasLabel
 {
     case Browse = 'BrowseModule';
 
@@ -13,4 +16,9 @@ enum ModulePermission: string
     case Add = 'AddModule';
 
     case Delete = 'DeleteModule';
+
+    public function getLabel(): string
+    {
+        return __(sprintf('module::permission.name_%s', Str::snake($this->value)));
+    }
 }
