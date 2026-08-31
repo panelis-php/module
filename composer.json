@@ -40,7 +40,10 @@
     "panelis": {
       "plugins": [
         "Panelis\\Module\\Plugins\\ModulePlugin"
-      ]
+      ],
+      "permissions": {
+        "module": "Panelis\\Module\\Panel\\Resources\\ModuleResource\\Enums\\ModulePermission"
+      }
     }
   },
   "require-dev": {
